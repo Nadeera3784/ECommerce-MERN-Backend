@@ -63,7 +63,7 @@ exports.signin = (req, res) => {
         }
 
         // Persist the token as tokenEXP in cookie with expiry date
-        res.cookie('t', token, {
+        res.cookie('tokenEXP', token, {
             expire: new Date() + 3600
         })
         // return response with user and token to fronted client
@@ -83,7 +83,11 @@ exports.signin = (req, res) => {
             }
         })
     })
+}
 
-
-
+exports.signout = (req, res) => {
+    res.clearCookie("tokenEXP")
+    res.json({
+        message: "signout scuccess"
+    })
 }

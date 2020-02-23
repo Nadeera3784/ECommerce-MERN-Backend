@@ -4,7 +4,8 @@ const router = express.Router()
 
 const {
     signup,
-    signin
+    signin,
+    signout
 } = require('../controllers/user.controller')
 
 const {
@@ -33,4 +34,5 @@ router.post('/signup', [
 
 
 router.post('/signin', signin)
+router.get('/signout', signout)
 module.exports = router
