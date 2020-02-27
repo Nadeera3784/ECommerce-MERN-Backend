@@ -24,14 +24,18 @@ mongoose.connection.on('error', err => {
 // midllewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 // load routes
 const authRouter = require('./routes/auth.route');
 const userRouter = require('./routes/user.route');
+const categoryRouter = require('./routes/category.route');
 app.use('/api', authRouter);
 app.use('/api', userRouter);
+app.use('/api', categoryRouter);
 
 app.use((req, res, next) => {
   res.send('page not founded');
