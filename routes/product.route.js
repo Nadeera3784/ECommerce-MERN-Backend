@@ -4,7 +4,8 @@ const router = express.Router()
 const {
     create,
     productById,
-    readProduct
+    readProduct,
+    removeProduct
 } = require('../controllers/product.controller')
 
 const {
@@ -18,7 +19,7 @@ const {
 
 router.get("/product/:productId", readProduct)
 router.post("/product/create/:userId", requireSignin, isAdmin, isAuth, create)
-
+router.delete("/product/:productId/:userId", requireSignin, isAdmin, isAuth, removeProduct)
 router.param('userId', userById)
 router.param('productId', productById)
 

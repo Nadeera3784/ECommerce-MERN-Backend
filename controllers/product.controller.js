@@ -19,6 +19,21 @@ exports.productById = (req, res, next, id) => {
       next();
     });
 };
+
+exports.removeProduct = (req, res) => {
+  let product = req.product
+  product.remove((err, deletedProduct) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler(err)
+      })
+    }
+
+    res.json({
+      message: "product deleted sucessfully"
+    })
+  })
+}
 exports.create = (req, res) => {
   let form = formidable.IncomingForm();
   form.keepExtensions = true;
