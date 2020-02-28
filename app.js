@@ -33,9 +33,11 @@ app.use(cookieParser());
 const authRouter = require('./routes/auth.route');
 const userRouter = require('./routes/user.route');
 const categoryRouter = require('./routes/category.route');
+const productRouter = require('./routes/product.route');
 app.use('/api', authRouter);
 app.use('/api', userRouter);
 app.use('/api', categoryRouter);
+app.use('/api', productRouter);
 
 app.use((req, res, next) => {
   res.send('page not founded');
