@@ -35,3 +35,40 @@ exports.categoryById = (req, res, next, id) => {
 exports.readCategory = (req, res) => {
     return res.json(req.category)
 }
+
+exports.listCategories = (req, res) => {
+    Category.find().exec((err, data) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            })
+        }
+        res.json(data)
+    })
+}
+
+exports.updateCategory = (req, res) => {
+    const category = req.category
+    category.name = req.body.name
+    category.save((err, data) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            })
+        }
+        res.json(data)
+    })
+}
+exports.removeCategory = (req, res) => {
+    const category = req.category
+    category.remove((err, data) => {
+        if (err) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            })
+        }
+        res.json({
+            message: "Category deleted"
+        })
+    })
+}
