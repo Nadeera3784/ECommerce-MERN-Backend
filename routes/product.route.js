@@ -8,7 +8,10 @@ const {
     removeProduct,
     updateProduct,
     listProducts,
-    relatedProducts
+    relatedProducts,
+    listCategories,
+    listBySearch,
+    productPhoto
 } = require('../controllers/product.controller')
 
 const {
@@ -26,6 +29,9 @@ router.delete("/product/:productId/:userId", requireSignin, isAdmin, isAuth, rem
 router.put("/product/:productId/:userId", requireSignin, isAdmin, isAuth, updateProduct)
 router.get('/products', listProducts)
 router.get('/products/related/:productId', relatedProducts)
+router.get('/products/categories', listCategories)
+router.post('/products/by/search', listBySearch)
+router.get('/product/photo/:productId', productPhoto)
 
 router.param('userId', userById)
 router.param('productId', productById)

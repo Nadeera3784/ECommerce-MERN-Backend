@@ -4,7 +4,8 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const expressValidator = require('express-validator');
+var cors = require('cors')
+
 require('dotenv').config();
 
 //db connection
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.use(cors())
 
 // load routes
 const authRouter = require('./routes/auth.route');
