@@ -7,16 +7,30 @@ const {
 exports.create = (req, res) => {
     const category = new Category(req.body)
 
-    category.save((err, data) => {
-        if (err) {
+    const {
+        name
+    } = req.body
+    Category.findOne({
+        name
+    }, (err, categoryEx) => {
+        if (categoryEx) {
             return res.status(400).json({
-                error: errorHandler(err)
+                error: 'Category already exists'
+            })
+        } else {
+            category.save((err, data) => {
+                if (err) {
+                    return res.status(400).json({
+                        error: errorHandler(err)
+                    })
+                }
+                res.json({
+                    data
+                })
             })
         }
-        res.json({
-            data
-        })
     })
+
 }
 
 exports.categoryById = (req, res, next, id) => {

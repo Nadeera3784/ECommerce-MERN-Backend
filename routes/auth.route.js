@@ -16,8 +16,8 @@ const {
 router.post('/signup', [
     check('name', 'Name is required').notEmpty().isLength({
         min: 4,
-        max: 16
-    }).withMessage('name must be between 3 to 16 characters'),
+        max: 32
+    }).withMessage('name must be between 3 to 32 characters'),
     check('email', 'Email is required and must be between 3 to 32 characters')
     .notEmpty()
     .isEmail()

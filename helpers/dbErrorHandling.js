@@ -6,16 +6,18 @@
 const uniqueMessage = error => {
     let output;
     try {
-        let fieldName = error.message.substring(
-            error.message.lastIndexOf(".$") + 2,
-            error.message.lastIndexOf("_1")
-        );
+        let fieldName = error.message.split(".$")[1];
+        field = field.split(" dup key")[0];
+        field = field.substring(0, field.lastIndexOf("_"));
+        req.flash("errors", [{
+            msg: "An account with this " + field + " already exists."
+        }]);
         output =
             fieldName.charAt(0).toUpperCase() +
             fieldName.slice(1) +
             " already exists";
     } catch (ex) {
-        output = "Unique field already exists";
+        output = "already exists";
     }
 
     return output;
